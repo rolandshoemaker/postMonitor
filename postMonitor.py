@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 from flask import Flask, request, json
 from werkzeug.routing import Rule
+from flask.ext.cors import CORS
 import time, argparse
 
 app = Flask(__name__)
+app.config['CORS_HEADERS'] = 'Content-Type'
+cors = CORS(app)
 
 import logging
 log = logging.getLogger('werkzeug')
