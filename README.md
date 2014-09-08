@@ -24,7 +24,7 @@ Todo
 
 Example
 -------
-Find & Replace all hosts you request with new host:port and it will grab and print the url and all data passed
+Find & Replace all hosts you request with new host:port and it will grab and print the url and all data passed, **OR** if you are using javascript+jQuery, hook all your calls with [requestHook.js](https://github.com/rolandshoemaker/requestHook.js)
 ![Screenshot of postMonitor running...](screenshot.png)
 
 Requirements
