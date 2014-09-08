@@ -26,3 +26,7 @@ Example
 -------
 Find & Replace all hosts you request with new host:port and it will grab and print the url and all data passed
 ![Screenshot of postMonitor running...](screenshot.png)
+
+Requirements
+------------
+* flask
