@@ -23,6 +23,7 @@ def catch_all(path=None):
 		print(time.strftime('%Y-%m-%d %H:%M:%S')+' - ['+request.method+'] /'+path+' - '+request.remote_addr)
 
 	if showHeaders == True:
+		print("\t[Header]")
 		for i in request.headers:
 			print("\t\t"+i[0]+": "+i[1])
 
@@ -31,10 +32,6 @@ def catch_all(path=None):
 		#pprint.pprint(request.args)
 		for i in request.args:
 			print("\t\t"+i+": "+request.args[i])
-
-	if request.headers['Content-Type'].split(';')[0] == "application/json" and request.json:
-		print("\t[JSON]")
-		print(json.dumps(request.json, indent=2, sort_keys=False, separators=(',', ': ')))
 
 	if request.headers['Content-Type'].split(';')[0] == "multipart/form-data" and request.form:
 		print("\t[Multipart form-data]")
@@ -47,6 +44,17 @@ def catch_all(path=None):
 		#pprint.pprint(request.form) 
 		for i in request.form:
 			print("\t\t"+i+": "+request.form[i])
+
+	if request.headers['Content-Type'].split(';')[0] == "application/json" and request.json:
+		print("\t[JSON]")
+		for i in json.dumps(request.json, indent=2, sort_keys=False, separators=(',', ': ')).split("\n"):
+			print("\t\t"+i)
+
+	if request.headers['Content-Type'].split(';')[0] == "text/plain":
+		print("\t[Plain text]")
+		#print ("\t"+request.data)
+		for i in request.data.split("\n"):
+			print("\t\t"+i)
 
 	return "^__^"
 
