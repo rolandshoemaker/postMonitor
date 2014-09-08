@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 from flask import Flask, request, json
 from werkzeug.routing import Rule
-import time
-
-import pprint
+import time, argparse
 
 app = Flask(__name__)
 
@@ -28,7 +26,7 @@ def catch_all(path=None):
 	if path == "" or path == None:
 		print(colors.OKBLUE+time.strftime('%Y-%m-%d %H:%M:%S')+colors.ENDC+' - ['+colors.HEADER+request.method+colors.ENDC+'] '+colors.WARNING+'/'+colors.ENDC+' - '+colors.FAIL+request.remote_addr+colors.ENDC)
 	else:
-		print(colors.OKBLUE+time.strftime('%Y-%m-%d %H:%M:%S')+colors.ENDC+' - ['+colors.HEADER+request.method+colors.ENDC+'] /'+colors.WARNING+path+colors.ENDC+' - '+colors.FAIL+request.remote_addr+colors.ENDC)
+		print(colors.OKBLUE+time.strftime('%Y-%m-%d %H:%M:%S')+colors.ENDC+' - ['+colors.HEADER+request.method+colors.ENDC+'] '+colors.WARNING+'/'+path+colors.ENDC+' - '+colors.FAIL+request.remote_addr+colors.ENDC)
 
 	if showHeaders == True:
 		print("\t["+colors.OKGREEN+"Header"+colors.ENDC+"]")
@@ -63,7 +61,20 @@ def catch_all(path=None):
 	return "^__^\n"
 
 if __name__ == "__main__":
-	host = "192.168.1.130"
+	host = '127.0.0.1'
 	port = 8080
-	showHeaders = True
-	app.run(host=host, port=port, debug=True)
+	showHeaders = False
+	parser = argparse.ArgumentParser(description="tool to grab and print all requests to all urls at an address.")
+	parser.add_argument('-host', help='ip to bind to, default 127.0.0.1')
+	parser.add_argument('-port', type=int, help='port to use, default 8080')
+	parser.add_argument('-headers', action='store_true', help='show request headers')
+	args = parser.parse_args()
+	if args.host:
+		host = args.host
+	if args.port:
+		port = args.port
+	if args.headers:
+		showHeaders = True
+
+	print("Starting on "+host+":"+str(port))
+	app.run(host=host, port=port, debug=True, use_reloader=False)
