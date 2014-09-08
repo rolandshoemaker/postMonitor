@@ -1,7 +1,7 @@
 postMonitor
 ===========
 
-Basic command-line tool to grab all HTTP requests (`GET, POST, PUT, PATCH, DELETE, COPY, HEAD` methods, and a few others) and print them rather nicely (if I don't say so myself.)
+Basic command-line tool to grab all HTTP requests (`GET, POST, PUT, PATCH, DELETE, COPY, HEAD` methods, and a few others) and print them rather nicely (if I don't say so myself), oh also it works cross-domain too (neat huh!)
 
 Usage
 -----
@@ -30,3 +30,4 @@ Find & Replace all hosts you request with new host:port and it will grab and pri
 Requirements
 ------------
 * flask
+* flask-cors
