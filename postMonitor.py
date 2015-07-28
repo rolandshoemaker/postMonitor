@@ -61,11 +61,11 @@ def catch_all(path=None):
 		for i in request.data.split("\n"):
 			print("\t\t"+i)
 
-	return "^__^\n"
+	return '{"signature":"BAMASDBGAiEA/4kz9wQq3NhvZ6VlOmjq2Z9MVHGrUjF8uxUG9n1uRc4CIQD2FYnnszKXrR9AP5kBWmTgh3fXy+VlHK8HZXfbzdFf7g=="}'
 
 if __name__ == "__main__":
 	host = '127.0.0.1'
-	port = 8080
+	port = 80
 	showHeaders = False
 	parser = argparse.ArgumentParser(description="tool to grab and print all requests to all urls at an address.")
 	parser.add_argument('-host', help='ip to bind to, default 127.0.0.1')
@@ -79,5 +79,6 @@ if __name__ == "__main__":
 	if args.headers:
 		showHeaders = True
 
-	print("Starting on "+host+":"+str(port))
+	print("\tStarting on "+host+":"+str(port))
+	print("\t-------------"+"-"*(len(host)+len(str(port)))+"\n")
 	app.run(host=host, port=port, debug=True, use_reloader=False)
